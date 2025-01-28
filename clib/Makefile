@@ -52,6 +52,9 @@ $(LUASRC)/lua: $(LUASRC)
 djot_combined.lua: $(LUA) $(MODULES) dumbParser.lua
 	$(LUA) combine.lua $(MODULES) > $@
 
+djot_combined_readable.lua: $(LUA) $(MODULES) combine_readable.lua
+	$(LUA) combine_readable.lua $(MODULES) > $@
+
 djot_combined.inc: djot_combined.lua
 	echo "unsigned char djot_combined_lua[] = {" > $@
 	(cat $< && printf "\0") | xxd -i >> $@
